@@ -1,51 +1,63 @@
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side" opened="true" >
-    <mat-card class="example-card" *ngFor="let i of patientList" (load)="Color();" (click)="CardClick(i)">
-      <mat-card-header [id]="i.id" class="header1" [style.background-color]="i.color" >
-        <table style="width: 100%;">
-          <tr>
-            <td><mat-card-subtitle>{{i.name}}</mat-card-subtitle></td>
-            <td style="text-align: right;"> <img mat-card-sm-image [src]="i.image"  style="width:25px;height:25px;border-radius: 50%;"></td>
+<mat-tab-group id="tab-group" dynamicHeight mat-stretch-tabs="false" mat-align-tabs="start" mat-tab-icon [selectedIndex]="selected"
+>
+  <mat-tab *ngFor="let tab of tabs;let index = index" > 
+    <ng-template mat-tab-label>
+      <mat-icon *ngIf="tab.id==0" class="example-tab-icon" fontIcon="home"></mat-icon>
+      {{tab.name}}
+      <button *ngIf="tab.id!=0" mat-icon-button (click)="removeTab(index)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </ng-template>
+    <mat-drawer-container class="example-container example-large-box mat-elevation-z4" autosize >
+      <mat-drawer #drawer class="example-sidenav" mode="side" opened="true" >
+        <mat-card class="example-card" *ngFor="let i of patientList" (load)="Color();" (click)="CardClick(i)">
+          <mat-card-header [id]="i.id" class="header1" [style.background-color]="i.color" >
+            <table style="width: 100%;">
+              <tr>
+                <td><mat-card-subtitle>{{i.name}}</mat-card-subtitle></td>
+                <td style="text-align: right;"> <img mat-card-sm-image [src]="i.image"  style="width:25px;height:25px;border-radius: 50%;"></td>
+              </tr>
+            </table>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
+        
+      </mat-drawer>
+      <mat-drawer-content class="example-sidenav-content">
+        <table *ngIf="isVisible" style="height:100%;width:100%;">
+          <tr style="height:5%">
+            <app-header></app-header>
           </tr>
+          <tr style="height:95%">
+          <td style="vertical-align: top;width: 30%;"><app-profile  [patient]="tab.patient"></app-profile></td>
+          <td style="padding:5px;vertical-align: top;width: 40%;"> <app-tasking ></app-tasking>
+            <app-message></app-message>
+          </td>
+          <td style="vertical-align: top;width: 30%;"><app-popularhealth></app-popularhealth></td>
+          </tr>
+          
         </table>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
-    
-  </mat-drawer>
-  <mat-drawer-content class="example-sidenav-content">
-    <table *ngIf="isVisible" style="height:100%;width:100%;">
-      <tr style="height:5%">
-        <app-header></app-header>
-      </tr>
-      <tr style="height:95%">
-      <td style="vertical-align: top;width: 30%;"><app-profile  [patient]="patient"></app-profile></td>
-      <td style="padding:5px;vertical-align: top;width: 40%;"> <app-tasking ></app-tasking>
-        <app-message></app-message>
-      </td>
-      <td style="vertical-align: top;width: 30%;"><app-popularhealth></app-popularhealth></td>
-      </tr>
+        
+        
+       
+      </mat-drawer-content>
       
-    </table>
-    
-    
-   
-  </mat-drawer-content>
-  
-  
-  
-  <!-- <div class="example-sidenav-content">
-    
-  </div> -->
-</mat-drawer-container>
-<button type="button" mat-flat-button id="btnToggle" (click)="SlideClick(drawer)">
-  <mat-icon>{{icon  ? 'keyboard_arrow_right' : 'keyboard_arrow_left' }}</mat-icon>
-</button>
+      
+      
+      <!-- <div class="example-sidenav-content">
+        
+      </div> -->
+    </mat-drawer-container>
+    <button type="button" mat-flat-button id="btnToggle" (click)="SlideClick(drawer)">
+      <mat-icon>{{icon  ? 'keyboard_arrow_right' : 'keyboard_arrow_left' }}</mat-icon>
+    </button> 
+  </mat-tab>
+</mat-tab-group>

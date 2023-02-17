@@ -17,6 +17,7 @@ export class AppComponent {
   }
   showFiller = false;
   icon=false;
+
   SlideClick(drawer:any){
     drawer.toggle();
     if(this.icon){
@@ -30,10 +31,12 @@ export class AppComponent {
   longText = `The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
   from Japan.`;
   color='pink';
+
   Random_Color()  
  {   
    this.Color();    
  }  
+
  Color()  
  {  
    this.color = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ","  
@@ -42,9 +45,19 @@ export class AppComponent {
    return this.color;
  }  
  isVisible=false;
- patient:any;
+//  patient:any;
+ tabs = [{id:0,name:'Home',patient:''}];
+  selected:number=0;
+
  CardClick(i:any){
   this.isVisible=true;
-  this.patient=i;
+  //this.patient=i;
+  this.tabs.push({id:i.id,name:i.name,patient:i});
+  this.selected=this.tabs.length - 1;
  }
+
+
+  removeTab(index: number) {
+    this.tabs.splice(index, 1);
+  }
 }

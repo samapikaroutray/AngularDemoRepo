@@ -35,3 +35,11 @@
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
   }
+  .example-large-box {
+    display: flex;
+  }
+  
+  .example-large-box {
+    height: 665px;
+    width: 100%;
+  }

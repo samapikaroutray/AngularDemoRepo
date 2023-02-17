@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -16,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
 import { TaskingComponent } from './tasking/tasking.component';
 import { MessageComponent } from './message/message.component';
 import { PopularhealthComponent } from './popularhealth/popularhealth.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,14 @@ import { PopularhealthComponent } from './popularhealth/popularhealth.component'
     MatSidenavModule,
     MatButtonModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    RouterModule.forRoot([
+      {
+        path:'tasking',
+        component:TaskingComponent
+      }
+    ]),
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
