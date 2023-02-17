@@ -46,14 +46,20 @@ export class AppComponent {
  }  
  isVisible=false;
 //  patient:any;
- tabs = [{id:0,name:'Home',patient:''}];
+ tabs = [{id:0,name:'Home',patient:this.patientList[0]}];
   selected:number=0;
 
  CardClick(i:any){
   this.isVisible=true;
   //this.patient=i;
-  this.tabs.push({id:i.id,name:i.name,patient:i});
-  this.selected=this.tabs.length - 1;
+  let index=this.tabs.findIndex(item => item.id === i.id);
+  if(index==-1){
+    this.tabs.push({id:i.id,name:i.name,patient:i});
+    this.selected=this.tabs.length - 1;
+  }else{
+    this.selected=index;
+  }
+  
  }
 
 

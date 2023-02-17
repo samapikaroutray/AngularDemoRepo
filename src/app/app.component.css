@@ -10,7 +10,7 @@
     padding:10px;
   }
   #btnToggle{
-    position:absolute;
+    /* position:absolute; */
     bottom: 0px;
     margin-left: 257px;
   }
@@ -41,4 +41,7 @@
   .example-large-box {
     height: 665px;
     width: 100%;
+  }
+  mat-drawer-container{
+    box-shadow: none;
   }
